@@ -8,9 +8,9 @@ import {themes as prismThemes} from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'My Site',
+  title: 'Home',
   tagline: 'Dinosaurs are cool',
-  favicon: 'img/favicon.ico',
+  // favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
   url: 'https://1036-ce.github.io',
@@ -46,14 +46,14 @@ const config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/1036-ce/1036-ce.github.io/blob/main/',
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/1036-ce/1036-ce.github.io/blob/main/',
         },
         theme: {
           customCss: './src/css/custom.css',
@@ -66,25 +66,29 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       // Replace with your project's social card
-      image: 'img/docusaurus-social-card.jpg',
+	  image: 'img/docusaurus-social-card.jpg',
       navbar: {
-        title: 'My Site',
-        logo: {
-          alt: 'My Site Logo',
-          src: 'img/logo.svg',
-        },
+        title: 'Home',
+        /* logo: {
+		 *   alt: 'My Site Logo',
+		 *   src: 'img/logo.svg',
+         * }, */
         items: [
           {
-            type: 'docSidebar',
-            sidebarId: 'tutorialSidebar',
-            position: 'left',
-            label: 'Tutorial',
+			  type: 'docSidebar',
+			  sidebarId: 'tutorialSidebar',
+			  position: 'left',
+			  label: 'Docs',
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
           {
-            href: 'https://github.com/facebook/docusaurus',
-            label: 'GitHub',
-            position: 'right',
+			  to: '/blog',
+			  label: 'Blog',
+			  position: 'left'
+		  },
+          {
+			  href: 'https://github.com/1036-ce/1036-ce.github.io',
+			  label: 'GitHub',
+			  position: 'right',
           },
         ],
       },
@@ -96,7 +100,7 @@ const config = {
             items: [
               {
                 label: 'Tutorial',
-                to: '/docs/intro',
+				to: '/docs/intro',
               },
             ],
           },
