@@ -7,7 +7,7 @@
 `std::launch` 是一个枚举，包含`async`和`deferred`
 - `async`标志启用异步操作
 - `deferred` 标志启用延迟计算，在调用`std::future`的`get`函数时才执行函数
-`async`和`deferred`是位映射的，一个按位或:`async | deferred` （默认值）
+`async`和`deferred`是位映射的，可以按位或:`async | deferred` （默认值）
 
 示例代码：
 ```cpp
