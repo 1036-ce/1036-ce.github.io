@@ -2,8 +2,14 @@
 
 `std::async` 异步运行一个函数，并返回一个**携带目标函数返回值**（`std::thread`不允许有返回值）的`std::future`对象
 
-`std::future` 对象有一个`get()`函数用于取出目标函数的返回值，`get()`是阻塞式的，会等到异步函数完成
+## std::future
+### method
+- `get()`: 用于取出目标函数的返回值，`get()`是阻塞式的，会等到异步函数完成
+- `wait()`: 等待直到结果可用，阻塞式
+- `wait_for()`: 等待一段时间
+- `wait_until()`: 等待直到某个指定的**时刻**
 
+## std::launch
 `std::launch` 是一个枚举，包含`async`和`deferred`
 - `async`标志启用异步操作
 - `deferred` 标志启用延迟计算，在调用`std::future`的`get`函数时才执行函数
