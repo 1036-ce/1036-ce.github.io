@@ -15,7 +15,24 @@ explicit thread(Function&& f, Args&& ...args);
 
 - `detach()`: 允许被调用线程独立于调用线程继续运行
 
-示例代码:
+## std::this_thread
+### method
+
+- `yield()`: 让出当前线程的CPU时间片，交给其他线程执行
+    ```cpp
+    // CPU 占用高， bad
+    whil(!isDone()) {}
+    
+    // CPU 占用低， good
+    whil(!isDone()) {
+        std::this_thread::yield();
+    }
+    ```
+- `get_id()`: 返回当前线程id
+- `sleep_for()`:  sleep一段时间
+- `sleep_until()`: sleep直到某一给定时刻
+
+## 示例代码:
 ```cpp
 #include <fmt/core.h>
 #include <iostream>
