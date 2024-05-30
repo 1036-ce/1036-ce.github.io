@@ -53,3 +53,6 @@ crontab -l
 注意事项
 确保脚本具有执行权限，可以使用 chmod +x /path/to/script.sh 来设置。
 使用绝对路径以避免路径问题。
+
+下面的网址包含cron的符号说明
+https://crontab.guru/
