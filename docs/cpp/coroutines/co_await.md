@@ -33,6 +33,7 @@ decltype(auto) get_awaiter(Awaitable&& awaitable) {
 
         <suspend-point>;
 
+        // 以下代码在挂起之后立即执行
         if constexpr(std::is_void_v<await_suspend_result_t>) {
             awaiter.await_suspend(handle_t::from_promise(p));
             <return-to-caller-or-resumer>;
@@ -67,6 +68,7 @@ decltype(auto) get_awaiter(Awaitable&& awaitable) {
 
         // <suspend-coroutine>
 
+        // 以下代码在挂起之后立即执行
         auto h = awaiter.await_suspend(handle_t::from_promise(p));
         h.resume();
         // <return-to-caller-or-resumer>
