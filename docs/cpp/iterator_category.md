@@ -42,4 +42,5 @@ cpp标准库定义了6种迭代器类别
 c++20新增的迭代器类别
 通过保证所表示的元素在**内存中连续存储**来完善 random_access_iterator 。
 
-> [cppreference](https://en.cppreference.com/w/cpp/iterator/iterator_tags)
+> [cppreference iterator_tags](https://en.cppreference.com/w/cpp/iterator/iterator_tags)
+> [cppreference iterator_traits](https://en.cppreference.com/w/cpp/iterator/iterator_traits)
