@@ -37,9 +37,13 @@ int main() {
 
 int main() {
 	using namespace std::literals;
+    // a's type is string
 	auto a = "asdasdasd"s;
 	a.append("asdasd");
 	std::cout << a << std::endl;
+
+    // b's type is `string_view`
+    auto b = "14r323432"sv;
 	return 0;
 }
 ```
