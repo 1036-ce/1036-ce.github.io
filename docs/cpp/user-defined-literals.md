@@ -29,6 +29,23 @@ int main() {
 ```
 通过`using namespace std::chrono_literals`引入`chrono_literals`, `chrono_literals `命名空间具有表示持续时间的符号，例如 1s 表示一秒，100ms 表示 100 毫秒
 
+
+### 使用s后缀生成string对象
+
+```cpp
+#include <iostream>
+
+int main() {
+	using namespace std::literals;
+	auto a = "asdasdasd"s;
+	a.append("asdasd");
+	std::cout << a << std::endl;
+	return 0;
+}
+```
+
 参考：
 
 [1] https://en.cppreference.com/w/cpp/language/user_literal
+
+[2] https://en.cppreference.com/w/cpp/symbol_index/literals
