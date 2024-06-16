@@ -1,6 +1,8 @@
 ## 简介
 `std::enable_if` 在c++-11中引入
 
+> **c++20的concepts可以完全取代`std::enable_if`**
+
 ```cpp
 template <bool B, class T = void>
 struct enable_if;
@@ -106,4 +108,30 @@ foo int
 foo float
 0.5
 */
+```
+
+## c++20的concepts出现
+
+c++20的concepts 可以完全替代`std::enable_if`
+
+```cpp
+template <typename T>
+requires std::is_integral_v<T>
+T foo(T x) {
+	std::cout << "foo int" << std::endl;
+	return x * 2;
+}
+
+template <typename T>
+requires std::is_floating_point_v<T>
+T foo(T x) {
+	std::cout << "foo float" << std::endl;
+	return x * 0.5;
+}
+
+int main(int argc, char *argv[]) {
+	std::cout << foo(1) << std::endl;
+	std::cout << foo(1.0) << std::endl;
+}
+
 ```
