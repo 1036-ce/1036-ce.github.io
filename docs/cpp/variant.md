@@ -1,8 +1,6 @@
 ## std::variant : a more perfect union
 
-
 ```cpp
-
 // in c++14 without std::variant
 struct Staff {
     union Data {
@@ -17,7 +15,6 @@ struct Staff {
 struct Staff {
     std::variant<int, double, string> data;
 };
-
 ```
 
 ### 成员函数
