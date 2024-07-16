@@ -91,6 +91,20 @@ std::visit([](auto &&arg) { std::cout << arg << std::endl; }, data);
 var_t val = std::visit([](auto &&arg) -> var_t { return arg + arg; }, data);
 
 std::cout << std::get<std::string>(val) << std::endl;
+
+std::visit(
+    [](auto &&v) {
+        using T = std::remove_cvref_t<decltype(v)>;
+
+        if constexpr (std::is_same_v<T, int>) {
+            std::cout << "value is an integer: " << v << std::endl;
+        } else if constexpr (std::is_same_v<T, double>) {
+            std::cout << "value is a double: " << v << std::endl;
+        } else {
+            std::cout << "testet" << std::endl;
+        }
+    },
+    ret);
 ```
 
 ```cpp
