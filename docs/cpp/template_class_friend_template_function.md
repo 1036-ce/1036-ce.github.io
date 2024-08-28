@@ -1,5 +1,7 @@
 ## 模板类的模板友元函数
 
+> [reference](https://isocpp.org/wiki/faq/templates#template-friends)
+
 通常需要在模板类内声明模板友元函数：
 
 ```cpp
