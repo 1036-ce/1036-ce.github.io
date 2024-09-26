@@ -1,4 +1,4 @@
-## operator<=>: spaceship operator
+## `operator<=>`: spaceship operator
 
 ### 返回值类型
 
@@ -28,7 +28,7 @@
 
 ***
 
-**当不使用`operator<=>`的`=default`实现，而是自定义时，`operator<=>`只生成四个比较操作符(<=, <, >, >=), 所以需要手动添加`operator==`函数，才能够生成完整的6个比较操作符**
+**当不使用`operator<=>`的`=default`实现，而是自定义时，`operator<=>`只生成四个比较操作符(`<=, <, >, >=`), 所以需要手动添加`operator==`函数，才能够生成完整的6个比较操作符**
 
 ```cpp
 // Wrong example
