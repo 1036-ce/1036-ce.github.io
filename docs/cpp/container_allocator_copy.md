@@ -85,3 +85,35 @@ container& operator=(container&& other) {
     return *this;
 }
 ```
+
+### swap
+
+下面使用`pocsa_v`表示`std::allocator_traits<allocator_type>::propagate_on_container_swap::value`
+
+如果`pocs_v`为`true`, 使用非成员(non-member)的非限定(unqualified)的`swap`交换`allocator`
+
+如果`pocs_v`为`false`, 不交换`allocator`, 如果`this->get_allocator() != other.get_allocator()`, 是一个ub,
+标准库的处理是直接终止程序
+
+```cpp
+// deque::swap 示例
+void swap(deque& other) {
+    using pocs = T_alloc_traits::propagate_on_container_swap;
+
+    assert(pocs::value || get_T_allocator() == other.get_T_allocator());
+
+    impl.swap_data(other.impl);
+
+    if (pocs::value) {
+        using std::swap;
+        swap(get_T_allocator(), other.get_T_allocator());
+    }
+}
+```
+
+从上面代码可以看出，使用unqualified non-member swap的方法是:
+
+```cpp
+using std::swap
+swap(obj1, obj2);
+```

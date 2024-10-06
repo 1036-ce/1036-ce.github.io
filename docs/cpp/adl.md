@@ -42,5 +42,30 @@ swap(obj1, obj2);
 如果`std::swap(A::MyClass&, A::MyClass&)`和`A::swap(MyClass&, MyClass&)`都被定义，
 那么第一个例子将会产生一个对`std::swap()`的调用，而第二个例子会编译失败.
 
+```cpp
+namespace MyNamespace
+{
+    class MyClass {};
+    void doSomething(MyClass) {}
+	void swap(MyClass& lhs, MyClass& rhs) {
+		std::cout << "aaa" << std::endl;
+	}
+}
+
+namespace std {
+	void swap(MyNamespace::MyClass& lhs, MyNamespace::MyClass& rhs) {
+		std::cout << "aaa" << std::endl;
+	}
+}
+
+// MyNamespace::MyClass obj; // global object
+
+int main() {
+	MyNamespace::MyClass a, b;
+	using std::swap;
+	swap(a, b);
+}
+```
+
 ### refrence
 > [stackoverflow](https://stackoverflow.com/questions/8111677/what-is-argument-dependent-lookup-aka-adl-or-koenig-lookup)
