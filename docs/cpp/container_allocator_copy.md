@@ -21,8 +21,11 @@ vector(vector&&) = default;
 下面使用`pocca_v`表示`std::allocator_traits<allocator_type>::propagate_on_container_copy_assignment::value`
 
 如果`pocca_v`为`true`, `this->allocator` 应被 `other.allocator` 的拷贝替换
+
 如果替换后的`this.allocator`的新值(`new_allocator`)与旧值(`old_allocator`)不同, 则应该使用`old_allocator`析构元素并释放内存
+
 然后由`new_allocator`重新分配内存。重新分配内存后，再执行元素的复制操作。
+
 
 如果`pocca_v`为`false`, `this->allocator`保持不变
 
@@ -34,7 +37,7 @@ container& operator(const container& other) {
             if (this->allocator != other.allocator) {
                 // 1. 使用old_allocator 析构元素、释放内存
                 
-                // 2. allocator = other.get_allocator()
+                // 2. this->allocator = other.get_allocator()
 
                 // 3. 使用allocator 重新分配内存（刚好能够装下other的所有元素）
 
@@ -59,6 +62,7 @@ container& operator(const container& other) {
 下面使用`pocma_v`表示`std::allocator_traits<allocator_type>::propagate_on_container_move_assignment::value`
 
 如果`pocma_v`为`true`, `this->allocator`应被`other.allocator`替换
+
 如果`pocma_v`为`false`且`this->allocator != other.allocator`, 则必须逐个移动元素, `this->allocator`保持不变
 
 ```cpp
