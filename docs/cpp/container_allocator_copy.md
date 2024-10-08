@@ -16,6 +16,28 @@ container(const container& other): alloc(std::allocator_traits<allocator_type>::
 vector(vector&&) = default;
 ```
 
+### allocator-extended move constructor 
+
+example:
+```cpp
+container(container&& other, const Allocator& alloc);
+```
+
+如果`alloc == other.get_allocator()`, 直接移动整个容器
+
+如果`alloc != other.get_allocator()`, 要逐个元素移动
+
+```cpp
+container(container&& other, const Allocator& alloc) {
+    if (alloc != other.get_allocator()) {
+        // 逐个元素移动
+    }
+    else {
+        // 直接移动整个元素
+    }
+}
+```
+
 ### copy assignment operator
 
 下面使用`pocca_v`表示`std::allocator_traits<allocator_type>::propagate_on_container_copy_assignment::value`
