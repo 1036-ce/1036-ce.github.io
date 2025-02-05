@@ -53,9 +53,8 @@ std::ostream& operator<< (std::ostream& o, const Foo<int>& x)
 ```
 从而导致在链接时找不到这些函数的实现，出现链接错误
 
-为了让编译器正确识别这些友元函数为模板函数，有两种方法：
+为了让编译器正确识别这些友元函数为模板函数，有如下方法：
 
-1. 方法一
 
 在类定义之前先声明这些函数，并且在类定义中声明友元函数时添加`<>`
 
@@ -88,27 +87,4 @@ template<typename T>
 std::ostream& operator<< (std::ostream& o, const Foo<T>& x) {
     return o << x.value_; 
 }
-```
-
-2. 方法二
-
-直接在类内部定义友元函数
-
-```cpp
-
-#include <iostream> template<typename T>
-class Foo {
-    public:
-        Foo(const T& value = T());
-        friend Foo<T> operator+ (const Foo<T>& lhs, const Foo<T>& rhs)
-        {
-            return Foo<T>(lhs.value_ + rhs.value_); 
-        }
-        friend std::ostream& operator<< (std::ostream& o, const Foo<T>& x)
-        {
-            return o << x.value_; 
-        }
-    private:
-        T value_;
-};
 ```
