@@ -1,7 +1,7 @@
 - Atomic (原子性) 事务或者全部执行或者不执行(通过REDO-UNDO机制保证原子性)
     1. Logging: DBMS记录所有的action，所以它可以undo the action， 同时维护在内存和硬盘中维护日志
     2. Shadow Paging: DBMS拷贝需要修改的页面，事务只在这些拷贝的页面上进行更改，只有事务commit后，这些页面才对其他事务可见。
-        (it is a bad idea, DONOT DO THIS!: 会在磁盘上形成碎片，无法顺序读写)
+        (it is a bad idea, DO NOT DO THIS!: 会在磁盘上形成碎片，无法顺序读写)
 
 - Consistency (一致性) 数据库必须确保事务执行前和执行后都符合`完整性约束(key definition, CHECK, ADD CONSTRAINT)`
 
@@ -10,7 +10,7 @@
     1. Pessimistic: 不让问题出现
     2. Optimistic: 假设冲突是罕见的，当他们发生时再处理
 
-- Durability (持久性) 所有已经commit的事务的更改都应该被持久化。(通过REDO-UNDO机制保证持久性)
+- Durability (持久性) 所有已经commit的事务的更改都应该被持久化。(通过REDO-UNDO机制保证持久性) 
 
 ***
 
@@ -28,7 +28,7 @@
     4. 幻读 (Scan-Write)
         一个事务多次扫描一个range, 另一个事务在该range中插入或删除tuple, 多次扫描得到的结果不一样。
 
-    5. 写偏斜Write-Skew (Read-Write)
+    5. 写偏斜Write-Skew (Read-Write) 
 
 ***
 
@@ -41,28 +41,30 @@ Two-phase locking(2PL) 两阶段锁, **使用2PL的调度是可序列化的**
     lock manager 授权或拒绝事务的请求
 
 2. 阶段2： Shrinking
-    在这个阶段，事务只被允许释放或降级在阶段1中获取到的锁，不能再请求新锁
+    在这个阶段，事务只被允许释放或降级在阶段1中获取到的锁，不能再请求新锁 
 
-2PL的不足
+2PL的不足:
 
 1. 2PL会导致`Cascading Abort`问题, `Cascading Abort`问题是当一个事务Abort时
 与它同时执行并且在数据上有依赖的其他事务也必须Abort, 回滚并重新执行。这会导致
 严重的性能问题。可以使用Strong 2PL解决
 
-        Strong 2PL 没有Cascading Abort问题
+        Strong 2PL 没有Cascading Abort问题 
 
 2. 2PL仍然可能出现脏读。可以使用Strong 2PL解决
 
     Strong 2PL在Shrinking阶段不会释放锁，直到事务commit时一起释放
 
-    ![strong-2pl](./strong_2pl.png)
+    ![strong-2pl](./strong_2pl.png) 
 
 3. 2PL可能导致死锁。 死锁检测和死锁避免
-    - 死锁检测
-        构建一个等待图，如果事务$T_{i}$等待$T_{j}$持有的锁，就从$T_{i}$到$T_{j}$连一条边。
 
-        使用一个background worker定时检测等待图中是否有环。如果有环，Rollback环中的一个事务，并重新执行或Abort。
+    死锁检测:
 
+        构建一个等待图，如果事务Ti等待Tj持有的锁，就从Ti到Tj连一条边。
+
+        使用一个background worker定时检测等待图中是否有环。如果有环，Rollback环中的一个事务，并重新执行或Abort。 
+   
 *** 
 
 我们需要在锁的粒度和锁的个数之间作权衡。
@@ -164,4 +166,4 @@ Isolation Levels
 
 ### Index Management
 
-### Delete
+### Delete   
