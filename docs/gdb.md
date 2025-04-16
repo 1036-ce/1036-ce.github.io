@@ -76,3 +76,11 @@ enable <breakpoint number>
 ## [catchpoint](https://blog.csdn.net/qq_33726635/article/details/118368075)
 
 用于捕获事件(抛出异常，加载动态库)
+
+## 参数
+
+可以使用`--args`选项指定程序的参数
+
+```bash 
+gdb -tui --args <prog> <arglist>
+```
