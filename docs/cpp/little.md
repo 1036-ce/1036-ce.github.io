@@ -103,3 +103,43 @@ obj2 = obj1;            // 调用operator=
 ### `(void)var`
 
 变量`var`未使用，使用上述方法消除编译器警告
+
+### raw string
+
+c++-11中提出的
+
+代码里嵌入一段原始字符串，该原始字符串不作任何转义，所见即所得，
+这个特性对于编写代码时要输入多行字符串，或者含引号的字符串提供了巨大方便。
+
+```cpp
+#include <stdio.h>
+
+int main() {
+    const char *startup_tips = R"(
+    Welcome to the OceanBase database implementation course.
+
+    Copyright (c) 2021 OceanBase and/or its affiliates.
+
+    Learn more about OceanBase at https://github.com/oceanbase/oceanbase
+    Learn more about MiniOB at https://github.com/oceanbase/miniob
+
+    )";
+
+    prinf("%s\n", startup_tips);
+    return 0;
+}
+
+// output: 
+/*
+
+    Welcome to the OceanBase database implementation course.
+
+    Copyright (c) 2021 OceanBase and/or its affiliates.
+
+    Learn more about OceanBase at https://github.com/oceanbase/oceanbase
+    Learn more about MiniOB at https://github.com/oceanbase/miniob
+    
+                                                                                                 
+*/
+
+```
